@@ -11,6 +11,7 @@ public class code extends Panel implements ActionListener,ItemListener{
         choiceWirelessCharger, choiceMemory;
     Button buttonBack, buttonNext;
     String curManufacturer, curResolution, curBattery, curWirelessCharger, curMemory;
+    String[] posManufacturer = {"Apple","Google","Honor","Samsung","Xiaomi"};
 
     class Phone{
         String manufacturer;
@@ -46,7 +47,7 @@ public class code extends Panel implements ActionListener,ItemListener{
             phone3.resolution = "2400x1080";
             phone3.battery = "4355mAh";
             phone3.wirelessCharger = "Поддерживает";
-            phone3.memory = new String[]{};
+            phone3.memory = new String[]{"128ГБ","256ГБ"};
         
         Phone phone4 = new Phone();
             phone4.manufacturer = "Honor";
@@ -54,7 +55,7 @@ public class code extends Panel implements ActionListener,ItemListener{
             phone4.resolution = "2400x1080";
             phone4.battery = "4800mAh";
             phone4.wirelessCharger = "Поддерживает";
-            phone4.memory = new String[]{};
+            phone4.memory = new String[]{"128ГБ","256ГБ"};
 
         Phone phone5 = new Phone();
             phone5.manufacturer = "Apple";
@@ -62,7 +63,7 @@ public class code extends Panel implements ActionListener,ItemListener{
             phone5.resolution = "2340x1080";
             phone5.battery = "2406mAh";
             phone5.wirelessCharger = "Поддерживает";
-            phone5.memory = new String[]{};
+            phone5.memory = new String[]{"128ГБ"};
 
 
         choiceManufacturer.addItemListener(new ItemListener() {
@@ -100,8 +101,8 @@ public class code extends Panel implements ActionListener,ItemListener{
             public void itemStateChanged(ItemEvent e){
                 String name = (String) e.getItem();
                 if(name!= null){
+                    System.out.println("Выбрано разрешение");
                     switch(name){
-                        System.out.println("Выбрано разрешение");
                         case "2340x1080":
                             System.out.println("2340x1080");
                             curResolution = "2340x1080";
@@ -149,13 +150,14 @@ public class code extends Panel implements ActionListener,ItemListener{
             public void itemStateChanged(ItemEvent e){
                 String name = (String) e.getItem();
                 if(name!=null){
+                    System.out.println("Выбрана поддержка беспроводной зарядки");
                     switch(name){
                         case "Поддерживает":
-                            System.out.println("Поддерживает");
+                            System.out.println("поддерживает");
                             curWirelessCharger = "Поддерживает";
                             break;
                         case "Не поддерживает":
-                            System.out.println("Не поддерживает");
+                            System.out.println("не поддерживает");
                             curWirelessCharger = "Не поддерживает";
                             break;
                     }
@@ -167,6 +169,7 @@ public class code extends Panel implements ActionListener,ItemListener{
             public void itemStateChanged(ItemEvent e){
                 String name = (String) e.getItem();
                 if(name!=null){
+                    System.out.println("Выбрана память емкостью");
                     switch(name){
                         case "128ГБ":
                             System.out.println("128ГБ");

@@ -267,12 +267,12 @@ public class code extends Panel implements ActionListener,ItemListener{
             Boolean paramIsNull = false;
             System.out.println("Пытаемся перейти далее");
 
-            /* for (int counter = 0; counter < curParameters.length; counter++){
+            for (int counter = 0; counter < curParameters.length; counter++){
                 if (curParameters[counter] == null){
                     paramIsNull = true;
-                    System.out.println("Не выбран параметр" + getName(curParameters[counter]));
+                    System.out.println("Не выбран параметр");
                 }
-            } */
+            }
 
             if (paramIsNull){
                 System.out.println("Выберите все параметры");

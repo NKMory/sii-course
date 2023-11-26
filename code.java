@@ -19,11 +19,11 @@ public class code extends Panel implements ActionListener,ItemListener{
     String[] curParameters = {curManufacturer, curResolution, curBattery, curWirelessCharger, curMemory};
 
     class Phone{
-        String manufacturer;
+        String[] manufacturer;
         String model;
-        String resolution;
-        String battery;
-        String wirelessCharger;
+        String[] resolution;
+        String[] battery;
+        String[] wirelessCharger;
         String[] memory;
     }
 
@@ -31,49 +31,44 @@ public class code extends Panel implements ActionListener,ItemListener{
         panelFirst = new Panel(new GridLayout(0,1));
 
         Phone phone1 = new Phone();
-            phone1.manufacturer = "Samsung";
+            phone1.manufacturer = new String[] {"Samsung"};
             phone1.model = "Galaxy A34 5G";
-            phone1.resolution = "2340x1080";
-            phone1.battery = "5000mAh";
-            phone1.wirelessCharger = "Не поддерживает";
+            phone1.resolution = new String[] {"2340x1080"};
+            phone1.battery = new String[] {"5000mAh"};
+            phone1.wirelessCharger = new String[] {"Не поддерживает"};
             phone1.memory = new String[]{"128ГБ","256ГБ"};
-            String[] phone1Parameters = {phone1.manufacturer,phone1.resolution,phone1.battery,phone1.wirelessCharger,phone1.memory};
 
         Phone phone2 = new Phone();
-            phone2.manufacturer = "Xiaomi";
+            phone2.manufacturer = new String[] {"Xiaomi"};
             phone2.model = "13 Ultra";
-            phone2.resolution = "3200x1440";
-            phone2.battery = "5000mAh";
-            phone2.wirelessCharger = "Поддерживает";
+            phone2.resolution = new String[] {"3200x1440"};
+            phone2.battery = new String[] {"5000mAh"};
+            phone2.wirelessCharger = new String[] {"Поддерживает"};
             phone2.memory = new String[]{"256ГБ","512ГБ","1ТБ"};
-            String[] phone2Parameters = {phone2.manufacturer,phone2.resolution,phone2.battery,phone2.wirelessCharger,phone2.memory};
 
         Phone phone3 = new Phone();
-            phone3.manufacturer = "Google";
+            phone3.manufacturer = new String[] {"Google"};
             phone3.model = "Pixel 7";
-            phone3.resolution = "2400x1080";
-            phone3.battery = "4355mAh";
-            phone3.wirelessCharger = "Поддерживает";
+            phone3.resolution = new String[] {"2400x1080"};
+            phone3.battery = new String[] {"4355mAh"};
+            phone3.wirelessCharger = new String[] {"Поддерживает"};
             phone3.memory = new String[]{"128ГБ","256ГБ"};
-            String[] phone3Parameters = {phone3.manufacturer,phone3.resolution,phone3.battery,phone3.wirelessCharger,phone3.memory};
         
         Phone phone4 = new Phone();
-            phone4.manufacturer = "Honor";
+            phone4.manufacturer = new String[] {"Honor"};
             phone4.model = "70 5G";
-            phone4.resolution = "2400x1080";
-            phone4.battery = "4800mAh";
-            phone4.wirelessCharger = "Поддерживает";
+            phone4.resolution = new String[] {"2400x1080"};
+            phone4.battery = new String[] {"4800mAh"};
+            phone4.wirelessCharger = new String[] {"Поддерживает"};
             phone4.memory = new String[]{"128ГБ","256ГБ"};
-            String[] phone4Parameters = {phone4.manufacturer,phone4.resolution,phone4.battery,phone4.wirelessCharger,phone4.memory};
 
         Phone phone5 = new Phone();
-            phone5.manufacturer = "Apple";
+            phone5.manufacturer = new String[] {"Apple"};
             phone5.model = "iPhone 13 mini";
-            phone5.resolution = "2340x1080";
-            phone5.battery = "2406mAh";
-            phone5.wirelessCharger = "Поддерживает";
+            phone5.resolution = new String[] {"2340x1080"};
+            phone5.battery = new String[] {"2406mAh"};
+            phone5.wirelessCharger = new String[] {"Поддерживает"};
             phone5.memory = new String[]{"128ГБ"};
-            String[] phone5Parameters = {phone5.manufacturer,phone5.resolution,phone5.battery,phone5.wirelessCharger,phone5.memory};
 
         Phone[] allPhones = {phone1, phone2, phone3, phone4, phone5};
 
@@ -152,6 +147,7 @@ public class code extends Panel implements ActionListener,ItemListener{
                     System.out.println("Выбрана поддержка беспроводной зарядки");
                     System.out.println(name);
                     curWirelessCharger = name;
+                    System.out.println(curWirelessCharger);
                 }
             }
         });
@@ -177,23 +173,106 @@ public class code extends Panel implements ActionListener,ItemListener{
         });
         panelFirst.add(choiceMemory);
 
-        buttonNext("Далее");
+        buttonNext = new Button("Далее");
         
         panelFirst.add(buttonNext);
+
+        panelFirst.setBackground(Color.green);
 
         add(panelFirst);
 
         panelSecond = new Panel(new GridLayout(0,1));
+        panelSecond.setBackground(Color.BLUE);
 
-        buttonNext.addActionListener(e ->{
-            Boolean paramIsNull = false;
-            System.out.println("Переходим далее");
-
-            for (int counter = 0; counter < curParameters.length; counter++){
-                if (curParameters[i] = null){
-                    paramIsNull = true;
+        Boolean isTheRightPhone = false;
+        Phone searchedPhone = null;
+        for (int curPhoneNum = 0; curPhoneNum < allPhones.length; curPhoneNum++){
+            for(int curParamCount = 0; curParamCount < allPhones[curPhoneNum].manufacturer.length; curParamCount++){
+                if (allPhones[curPhoneNum].manufacturer[curParamCount] == curManufacturer){
+                    isTheRightPhone = true;
                 }
             }
+            if (!isTheRightPhone){
+                continue;
+            }
+
+            for(int curParamCount = 0; curParamCount < allPhones[curPhoneNum].resolution.length; curParamCount++){
+                if (allPhones[curPhoneNum].resolution[curParamCount] == curResolution){
+                    isTheRightPhone = true;
+                }
+                else{
+                    isTheRightPhone = false;
+                }
+            }
+            if (!isTheRightPhone){
+                continue;
+            }
+
+            for(int curParamCount = 0; curParamCount < allPhones[curPhoneNum].battery.length; curParamCount++){
+                if (allPhones[curPhoneNum].battery[curParamCount] == curBattery){
+                    isTheRightPhone = true;
+                }
+                else{
+                    isTheRightPhone = false;
+                }
+            }
+            if (!isTheRightPhone){
+                continue;
+            }
+            
+            for(int curParamCount = 0; curParamCount < allPhones[curPhoneNum].wirelessCharger.length; curParamCount++){
+                if (allPhones[curPhoneNum].wirelessCharger[curParamCount] == curWirelessCharger){
+                    isTheRightPhone = true;
+                }
+                else{
+                    isTheRightPhone = false;
+                }
+            }
+            if (!isTheRightPhone){
+                continue;
+            }
+
+            for(int curParamCount = 0; curParamCount < allPhones[curPhoneNum].memory.length; curParamCount++){
+                if (allPhones[curPhoneNum].memory[curParamCount] == curMemory){
+                    isTheRightPhone = true;
+                }
+                else{
+                    isTheRightPhone = false;
+                }
+            }
+            if (isTheRightPhone){
+                searchedPhone = allPhones[curPhoneNum];
+            }
+        }
+        
+        if (searchedPhone != null){
+            Label textPhoneWasFound = new Label("По Вашим параметрам подходит телефон:");
+            font = new Font("Dialog",Font.PLAIN,14);
+            textPhoneWasFound.setFont(font);
+            panelSecond.add(textPhoneWasFound);
+            
+            
+            Label textSearchedPhone = new Label(searchedPhone.manufacturer[0] + " " + searchedPhone.model);
+            textSearchedPhone.setFont(font);
+            panelSecond.add(textSearchedPhone);
+        }
+        else{
+            Label textPhoneWasNotFound = new Label("По Вашим параметрам не было найдено телефона");
+            font = new Font("Dialog",Font.PLAIN,14);
+            textPhoneWasNotFound.setFont(font);
+            panelSecond.add(textPhoneWasNotFound);
+        }
+        
+        buttonNext.addActionListener(e ->{
+            Boolean paramIsNull = false;
+            System.out.println("Пытаемся перейти далее");
+
+            /* for (int counter = 0; counter < curParameters.length; counter++){
+                if (curParameters[counter] == null){
+                    paramIsNull = true;
+                    System.out.println("Не выбран параметр" + getName(curParameters[counter]));
+                }
+            } */
 
             if (paramIsNull){
                 System.out.println("Выберите все параметры");
@@ -203,14 +282,6 @@ public class code extends Panel implements ActionListener,ItemListener{
                 add(panelSecond);
             }
         });
-
-        for (int counter = 0; counter < allPhones.length; counter++){
-            //
-        }
-        
-        Label text = new Label("По Вашим параметрам подходит телефон:");
-        font = new Font("Dialog",Font.PLAIN,14);
-        text.setFont(font);
     }
 
     public static void main(String args[]) {

@@ -1,50 +1,145 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class code extends Panel implements ActionListener,ItemListener{
+public class Code extends Panel implements ActionListener,ItemListener {
 
     Panel panelFirst, panelSecond;
     Label text;
     Font font;
-    Choice choiceManufacturer, choiceResolution, choiceBattery, 
-        choiceWirelessCharger, choiceMemory;
+    Choice choiceManufacturer, choiceResolution, choiceBattery,
+            choiceWirelessCharger, choiceMemory;
     Button buttonBack, buttonNext;
-    String curManufacturer, curResolution, curBattery, curWirelessCharger, curMemory;
-    String[] posManufacturer = {"Apple","Google","Honor","Samsung","Xiaomi"};
-    String[] posResolution = {"2340x1080","2400x1080","3200x1440"};
-    String[] posBattery = {"2406mAh","4355mAh","4800mAh","5000mAh"};
-    String[] posWirelessCharger = {"Поддерживает","Не поддерживает"};
-    String[] posMemory = {"128ГБ","256ГБ","512ГБ","1ТБ"};
-    String[] curParameters = {curManufacturer, curResolution, curBattery, curWirelessCharger, curMemory};
+    String inactiveChoice = "Выберите вариант";
+    List<String> posManufacturer = List.of("Apple","Google","Honor","Samsung","Xiaomi");
+    List<String> posResolution = List.of("2340x1080","2400x1080","3200x1440");
+    List<String> posBattery = List.of("2406mAh","4355mAh","4800mAh","5000mAh");
+    List<String> posWirelessCharger = List.of("Поддерживает","Не поддерживает");
+    List<String> posMemory = List.of("128ГБ","256ГБ","512ГБ","1ТБ");
 
-    class Phone{
-        String[] manufacturer;
+    private static class Phone{
+        String manufacturer;
         String model;
-        String[] resolution;
-        String[] battery;
-        String[] wirelessCharger;
-        String[] memory;
+        String resolution;
+        String battery;
+        String wirelessCharger;
+        String memory;
+
+        public String getManufacturer() {
+            return manufacturer;
+        }
+
+        public void setManufacturer(List<String> manufacturer) {
+            this.manufacturer = manufacturer;
+        }
+
+        public String getModel() {
+            return model;
+        }
+
+        public void setModel(String model) {
+            this.model = model;
+        }
+
+        public String getResolution() {
+            return resolution;
+        }
+
+        public void setResolution(String resolution) {
+            this.resolution = resolution;
+        }
+
+        public String getBattery() {
+            return battery;
+        }
+
+        public void setBattery(String battery) {
+            this.battery = battery;
+        }
+
+        public String getWirelessCharger() {
+            return wirelessCharger;
+        }
+
+        public void setWirelessCharger(String wirelessCharger) {
+            this.wirelessCharger = wirelessCharger;
+        }
+
+        public String getMemory() {
+            return memory;
+        }
+
+        public void setMemory(String memory) {
+            this.memory = memory;
+        }
+
+
+        @Override
+        public String toString() {
+            return "Phone{" +
+                    "manufacturer='" + manufacturer + '\'' +
+                    ", model='" + model + '\'' +
+                    ", resolution='" + resolution + '\'' +
+                    ", battery='" + battery + '\'' +
+                    ", wirelessCharger='" + wirelessCharger + '\'' +
+                    ", memory='" + memory + '\'' +
+                    '}';
+        }
     }
 
-    public code(){
+    public Code(){
         panelFirst = new Panel(new GridLayout(0,1));
 
-        Phone phone1 = new Phone();
-            phone1.manufacturer = new String[] {"Samsung"};
-            phone1.model = "Galaxy A34 5G";
-            phone1.resolution = new String[] {"2340x1080"};
-            phone1.battery = new String[] {"5000mAh"};
-            phone1.wirelessCharger = new String[] {"Не поддерживает"};
-            phone1.memory = new String[]{"128ГБ","256ГБ"};
+/*         Phone phoneOne = new Phone();
+        phoneOne.setManufacturer(posManufacturer[3]);
+        phoneOne.setModel("Galaxy A34 5G");
+        phoneOne.setResolution(posResolution[0]);
+        phoneOne.setBattery(posBattery[3]);
+        phoneOne.setWirelessCharger(posWirelessCharger[1]);
+        phoneOne.setMemory(posMemory[0]); */
 
-        Phone phone2 = new Phone();
-            phone2.manufacturer = new String[] {"Xiaomi"};
-            phone2.model = "13 Ultra";
-            phone2.resolution = new String[] {"3200x1440"};
-            phone2.battery = new String[] {"5000mAh"};
-            phone2.wirelessCharger = new String[] {"Поддерживает"};
-            phone2.memory = new String[]{"256ГБ","512ГБ","1ТБ"};
+        Phone phoneOne = new Phone();
+        phoneOne.setManufacturer(posManufacturer.indexOf("Samsung"));
+        phoneOne.setModel("Galaxy A34 5G");
+        phoneOne.setResolution(posResolution[0]);
+        phoneOne.setBattery(posBattery[3]);
+        phoneOne.setWirelessCharger(posWirelessCharger[1]);
+        phoneOne.setMemory(posMemory[0]);
+
+        Phone phoneTwo = new Phone();
+        phoneTwo.setManufacturer(posManufacturer[3]);
+        phoneTwo.setModel("Galaxy A34 5G");
+        phoneTwo.setResolution(posResolution[0]);
+        phoneTwo.setBattery(posBattery[3]);
+        phoneTwo.setWirelessCharger(posWirelessCharger[1]);
+        phoneTwo.setMemory(posMemory[1]);
+
+        Phone phoneThree = new Phone();
+        phoneThree.setManufacturer(posManufacturer[4]);
+        phoneThree.setModel("13 Ultra");
+        phoneThree.setResolution(posResolution[2]);
+        phoneThree.setBattery(posBattery[3]);
+        phoneThree.setWirelessCharger(posWirelessCharger[0]);
+        phoneThree.setMemory(posMemory[1]);
+
+        Phone phoneFour = new Phone();
+        phoneFour.setManufacturer(posManufacturer[4]);
+        phoneFour.setModel("13 Ultra");
+        phoneFour.setResolution(posResolution[2]);
+        phoneFour.setBattery(posBattery[3]);
+        phoneFour.setWirelessCharger(posWirelessCharger[0]);
+        phoneFour.setMemory(posMemory[2]);
+
+        Phone phoneFive = new Phone();
+        phoneFive.setManufacturer(posManufacturer[4]);
+        phoneFive.setModel("13 Ultra");
+        phoneFive.setResolution(posResolution[2]);
+        phoneFive.setBattery(posBattery[3]);
+        phoneFive.setWirelessCharger(posWirelessCharger[0]);
+        phoneFive.setMemory(posMemory[3]);
+/*        
 
         Phone phone3 = new Phone();
             phone3.manufacturer = new String[] {"Google"};
@@ -55,7 +150,7 @@ public class code extends Panel implements ActionListener,ItemListener{
             phone3.memory = new String[]{"128ГБ","256ГБ"};
         
         Phone phone4 = new Phone();
-            phone4.manufacturer = new String[] {"Honor"};
+            phone4.manufacturer = ;
             phone4.model = "70 5G";
             phone4.resolution = new String[] {"2400x1080"};
             phone4.battery = new String[] {"4800mAh"};
@@ -68,26 +163,35 @@ public class code extends Panel implements ActionListener,ItemListener{
             phone5.resolution = new String[] {"2340x1080"};
             phone5.battery = new String[] {"2406mAh"};
             phone5.wirelessCharger = new String[] {"Поддерживает"};
-            phone5.memory = new String[]{"128ГБ"};
+            phone5.memory = new String[]{"128ГБ"};*/
 
-        Phone[] allPhones = {phone1, phone2, phone3, phone4, phone5};
+        List<Phone> allPhones = new ArrayList<>();
+        allPhones.add(phoneOne);
+        allPhones.add(phoneTwo);
+        allPhones.add(phoneThree);
+        allPhones.add(phoneFour);
+        allPhones.add(phoneFive);
 
         //*****************************************
         //Выпадающий список с выбором производителя
         //*****************************************
+
+        Phone currentPhoneSearch = new Phone();
+
         choiceManufacturer = new Choice();
-        for (int counter = 0; counter < posManufacturer.length; counter++){
-            choiceManufacturer.addItem(posManufacturer[counter]);
+        choiceManufacturer.add(inactiveChoice);
+        currentPhoneSearch.setManufacturer(inactiveChoice);
+        for (String manufacturer : posManufacturer) {
+            choiceManufacturer.addItem(manufacturer);
         }
 
-        choiceManufacturer.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                String name = (String) e.getItem();
-                if (name!=null) {
-                    System.out.println("Выбран производитель");
-                    System.out.println(name);
-                    curManufacturer = name;
-                }
+        choiceManufacturer.addItemListener(e -> {
+            String choiceManufacturer = (String) e.getItem();
+            if (!choiceManufacturer.equals(inactiveChoice)) {
+                System.out.println("Выбран производитель " + choiceManufacturer);
+                currentPhoneSearch.setManufacturer(choiceManufacturer);
+            }else{
+                System.out.println("Выбран неверный производитель");
             }
         });
         panelFirst.add(choiceManufacturer);
@@ -96,18 +200,19 @@ public class code extends Panel implements ActionListener,ItemListener{
         //Выпадающий список с выбором разрешения
         //**************************************
         choiceResolution = new Choice();
-        for (int counter = 0; counter < posResolution.length; counter++){
-            choiceResolution.addItem(posResolution[counter]);
+        choiceResolution.add(inactiveChoice);
+        currentPhoneSearch.setResolution(inactiveChoice);
+        for (String resolution : posResolution) {
+            choiceResolution.addItem(resolution);
         }
 
-        choiceResolution.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e){
-                String name = (String) e.getItem();
-                if(name!= null){
-                    System.out.println("Выбрано разрешение");
-                    System.out.println(name);
-                    curResolution = name;
-                }
+        choiceResolution.addItemListener(e -> {
+            String choiceResolution = (String) e.getItem();
+            if(!choiceResolution.equals(inactiveChoice)){
+                System.out.println("Выбрано разрешение " + choiceResolution);
+                currentPhoneSearch.setResolution(choiceResolution);
+            }else{
+                System.out.println("Выбрано неверное разрешение");
             }
         });
         panelFirst.add(choiceResolution);
@@ -116,18 +221,19 @@ public class code extends Panel implements ActionListener,ItemListener{
         //Выпадающий список с выбором емкости батареи
         //*******************************************
         choiceBattery = new Choice();
-        for (int counter = 0; counter < posBattery.length; counter++){
-            choiceBattery.addItem(posBattery[counter]);
+        choiceBattery.add(inactiveChoice);
+        currentPhoneSearch.setBattery(inactiveChoice);
+        for (String battery : posBattery) {
+            choiceBattery.addItem(battery);
         }
 
-        choiceBattery.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                String name = (String) e.getItem();
-                if (name!=null) {
-                    System.out.println("Выбрана емкость батареи");
-                    System.out.println(name);
-                    curBattery = name;
-                }
+        choiceBattery.addItemListener(e -> {
+            String choiceBattery = (String) e.getItem();
+            if (!choiceBattery.equals(inactiveChoice)) {
+                System.out.println("Выбрана емкость батареи " + choiceBattery);
+                currentPhoneSearch.setBattery(choiceBattery);
+            }else{
+                System.out.println("Выбрана неверная емкость батареи");
             }
         });
         panelFirst.add(choiceBattery);
@@ -136,19 +242,19 @@ public class code extends Panel implements ActionListener,ItemListener{
         //Выпадающий список с выбором поддержки беспроводой зарядки
         //*********************************************************
         choiceWirelessCharger = new Choice();
-        for (int counter = 0; counter < posWirelessCharger.length; counter++){
-            choiceWirelessCharger.addItem(posWirelessCharger[counter]);
+        choiceWirelessCharger.add(inactiveChoice);
+        currentPhoneSearch.setWirelessCharger(inactiveChoice);
+        for (String wirelessCharger : posWirelessCharger) {
+            choiceWirelessCharger.addItem(wirelessCharger);
         }
 
-        choiceWirelessCharger.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e){
-                String name = (String) e.getItem();
-                if(name!=null){
-                    System.out.println("Выбрана поддержка беспроводной зарядки");
-                    System.out.println(name);
-                    curWirelessCharger = name;
-                    System.out.println(curWirelessCharger);
-                }
+        choiceWirelessCharger.addItemListener(e -> {
+            String choiceWirelessCharger = (String) e.getItem();
+            if(!choiceWirelessCharger.equals(inactiveChoice)){
+                System.out.println("Выбрана поддержка беспроводной зарядки " + choiceWirelessCharger);
+                currentPhoneSearch.setWirelessCharger(choiceWirelessCharger);
+            }else{
+                System.out.println("Выбран неверный тип поддержки беспроводной зарядки");
             }
         });
         panelFirst.add(choiceWirelessCharger);
@@ -157,149 +263,110 @@ public class code extends Panel implements ActionListener,ItemListener{
         //Выпадающий список с выбором размера внутреннего хранилища
         //*********************************************************
         choiceMemory = new Choice();
-        for (int counter = 0; counter < posMemory.length; counter++){
-            choiceMemory.addItem(posMemory[counter]);
+        choiceMemory.add(inactiveChoice);
+        currentPhoneSearch.setMemory(inactiveChoice);
+        for (String memory : posMemory) {
+            choiceMemory.addItem(memory);
         }
 
-        choiceMemory.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e){
-                String name = (String) e.getItem();
-                if(name!=null){
-                    System.out.println("Выбрана память емкостью");
-                    System.out.println(name);
-                    curMemory = name;
-                }
+        choiceMemory.addItemListener(e -> {
+            String choiceMemory = (String) e.getItem();
+            if(!choiceMemory.equals(inactiveChoice)){
+                System.out.println("Выбрана память емкостью " + choiceMemory);
+                currentPhoneSearch.setMemory(choiceMemory);
             }
         });
+
         panelFirst.add(choiceMemory);
 
         buttonNext = new Button("Далее");
-        
+
+
         panelFirst.add(buttonNext);
 
-        panelFirst.setBackground(Color.green);
+        panelFirst.setBackground(Color.GREEN);
 
         add(panelFirst);
 
-        panelSecond = new Panel(new GridLayout(0,1));
-        panelSecond.setBackground(Color.BLUE);
-
-        Boolean isTheRightPhone = false;
-        Phone searchedPhone = null;
-        for (int curPhoneNum = 0; curPhoneNum < allPhones.length; curPhoneNum++){
-            for(int curParamCount = 0; curParamCount < allPhones[curPhoneNum].manufacturer.length; curParamCount++){
-                if (allPhones[curPhoneNum].manufacturer[curParamCount] == curManufacturer){
-                    isTheRightPhone = true;
-                }
-            }
-            if (!isTheRightPhone){
-                continue;
-            }
-
-            for(int curParamCount = 0; curParamCount < allPhones[curPhoneNum].resolution.length; curParamCount++){
-                if (allPhones[curPhoneNum].resolution[curParamCount] == curResolution){
-                    isTheRightPhone = true;
-                }
-                else{
-                    isTheRightPhone = false;
-                }
-            }
-            if (!isTheRightPhone){
-                continue;
-            }
-
-            for(int curParamCount = 0; curParamCount < allPhones[curPhoneNum].battery.length; curParamCount++){
-                if (allPhones[curPhoneNum].battery[curParamCount] == curBattery){
-                    isTheRightPhone = true;
-                }
-                else{
-                    isTheRightPhone = false;
-                }
-            }
-            if (!isTheRightPhone){
-                continue;
-            }
-            
-            for(int curParamCount = 0; curParamCount < allPhones[curPhoneNum].wirelessCharger.length; curParamCount++){
-                if (allPhones[curPhoneNum].wirelessCharger[curParamCount] == curWirelessCharger){
-                    isTheRightPhone = true;
-                }
-                else{
-                    isTheRightPhone = false;
-                }
-            }
-            if (!isTheRightPhone){
-                continue;
-            }
-
-            for(int curParamCount = 0; curParamCount < allPhones[curPhoneNum].memory.length; curParamCount++){
-                if (allPhones[curPhoneNum].memory[curParamCount] == curMemory){
-                    isTheRightPhone = true;
-                }
-                else{
-                    isTheRightPhone = false;
-                }
-            }
-            if (isTheRightPhone){
-                searchedPhone = allPhones[curPhoneNum];
-            }
-        }
-        
-        if (searchedPhone != null){
-            Label textPhoneWasFound = new Label("По Вашим параметрам подходит телефон:");
-            font = new Font("Dialog",Font.PLAIN,14);
-            textPhoneWasFound.setFont(font);
-            panelSecond.add(textPhoneWasFound);
-            
-            
-            Label textSearchedPhone = new Label(searchedPhone.manufacturer[0] + " " + searchedPhone.model);
-            textSearchedPhone.setFont(font);
-            panelSecond.add(textSearchedPhone);
-        }
-        else{
-            Label textPhoneWasNotFound = new Label("По Вашим параметрам не было найдено телефона");
-            font = new Font("Dialog",Font.PLAIN,14);
-            textPhoneWasNotFound.setFont(font);
-            panelSecond.add(textPhoneWasNotFound);
-        }
-        
         buttonNext.addActionListener(e ->{
-            Boolean paramIsNull = false;
-            System.out.println("Пытаемся перейти далее");
+            panelSecond = new Panel(new GridLayout(0,1));
 
-            /* for (int counter = 0; counter < curParameters.length; counter++){
-                if (curParameters[counter] == null){
-                    paramIsNull = true;
-                    System.out.println("Не выбран параметр" + getName(curParameters[counter]));
+            remove(panelFirst);
+            add(panelSecond);
+
+            panelSecond.setBackground(Color.BLUE);
+
+            Phone rightPhone = null;
+
+            for (Phone phone:allPhones) {
+                if (equals(currentPhoneSearch, phone)){
+                    rightPhone = phone;
                 }
-            } */
+            }
 
-            if (paramIsNull){
-                System.out.println("Выберите все параметры");
+            if (rightPhone != null){
+                Label textPhoneWasFound = new Label("По Вашим параметрам подходит телефон:");
+                System.out.println("По Вашим параметрам подходит телефон:");
+                font = new Font("Dialog",Font.PLAIN,14);
+                textPhoneWasFound.setFont(font);
+                panelSecond.add(textPhoneWasFound);
+
+                Label textSearchedPhone = new Label(rightPhone.getManufacturer() + " " + rightPhone.getModel());
+                System.out.println(rightPhone.getManufacturer() + " " + rightPhone.getModel());
+                textSearchedPhone.setFont(font);
+                panelSecond.add(textSearchedPhone);
             }
             else{
-                remove(panelFirst);
-                add(panelSecond);
+                Label textPhoneWasNotFound = new Label("По Вашим параметрам не было найдено телефона");
+                System.out.println("По Вашим параметрам не было найдено телефона");
+                font = new Font("Dialog",Font.PLAIN,14);
+                textPhoneWasNotFound.setFont(font);
+                panelSecond.add(textPhoneWasNotFound);
+            }
+
+            panelSecond.revalidate();
+
+            List<String> currentParams = new ArrayList<>();
+            currentParams.add(currentPhoneSearch.getBattery());
+            currentParams.add(currentPhoneSearch.getManufacturer());
+            currentParams.add(currentPhoneSearch.getMemory());
+            currentParams.add(currentPhoneSearch.getResolution());
+            currentParams.add(currentPhoneSearch.getWirelessCharger());
+
+            for (String param:currentParams) {
+                if (param.equals(inactiveChoice)){
+                    System.out.println("Не выбран один из параметров");
+                    break;
+                }
+            }
+
+        });
+    }
+
+    private boolean equals(Phone currentPhoneSearch, Phone phone) {
+        return currentPhoneSearch.getMemory().equals(phone.getMemory()) &&
+                currentPhoneSearch.getManufacturer().equals(phone.getManufacturer()) &&
+                currentPhoneSearch.getBattery().equals(phone.getBattery()) &&
+                currentPhoneSearch.getResolution().equals(phone.getResolution()) &&
+                currentPhoneSearch.getWirelessCharger().equals(phone.getWirelessCharger());
+    }
+
+    public static void main(String[] args) {
+        Code panel = new Code();
+
+        Frame frame = new Frame("Экспертная система по выбору смартфона");
+        frame.add(panel);
+        frame.setSize(1260, 660);
+        frame.setLocation(100, 100);
+        frame.setVisible(true);
+        frame.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+                System.exit(0);
             }
         });
     }
 
-    public static void main(String args[]) {
-            code panel = new code();
-        
-            Frame frame = new Frame("Экспертная система по выбору смартфона");	
-            frame.add(panel);
-            frame.setSize(1260, 660);
-            frame.setLocation(100, 100);
-            frame.setVisible(true);
-            frame.addWindowListener(new WindowAdapter(){
-                public void windowClosing(WindowEvent e){
-                    System.exit(0);
-                }
-            });
-        }
-
-        @Override
+    @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");

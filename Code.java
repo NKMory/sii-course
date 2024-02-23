@@ -3,10 +3,13 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 
 public class Code extends Panel implements ActionListener,ItemListener {
 
-    Panel panelFirst, panelSecond;
+    JPanel panelFirst, panelSecond;
     Label text;
     Font font;
     Choice choiceManufacturer, choiceResolution, choiceBattery,
@@ -26,6 +29,8 @@ public class Code extends Panel implements ActionListener,ItemListener {
         String battery;
         String wirelessCharger;
         String memory;
+
+        String[] phoneParams = {manufacturer,resolution,battery,wirelessCharger,memory};
 
         public String getManufacturer() {
             return manufacturer;
@@ -75,95 +80,95 @@ public class Code extends Panel implements ActionListener,ItemListener {
             this.memory = memory;
         }
 
-
-        @Override
-        public String toString() {
-            return "Phone{" +
-                    "manufacturer='" + manufacturer + '\'' +
-                    ", model='" + model + '\'' +
-                    ", resolution='" + resolution + '\'' +
-                    ", battery='" + battery + '\'' +
-                    ", wirelessCharger='" + wirelessCharger + '\'' +
-                    ", memory='" + memory + '\'' +
-                    '}';
+        public String getParams(int curParamNum) {
+            return this.phoneParams[curParamNum];
         }
     }
 
     public Code(){
-        panelFirst = new Panel(new GridLayout(0,1));
-
-/*         Phone phoneOne = new Phone();
-        phoneOne.setManufacturer(posManufacturer[3]);
-        phoneOne.setModel("Galaxy A34 5G");
-        phoneOne.setResolution(posResolution[0]);
-        phoneOne.setBattery(posBattery[3]);
-        phoneOne.setWirelessCharger(posWirelessCharger[1]);
-        phoneOne.setMemory(posMemory[0]); */
+        panelFirst = new JPanel(new GridBagLayout());
+        panelFirst.setBackground(Color.green);
+        
 
         Phone phoneOne = new Phone();
-        phoneOne.setManufacturer(posManufacturer.indexOf("Samsung"));
+        phoneOne.setManufacturer(posManufacturer.get(posManufacturer.indexOf("Samsung")));
         phoneOne.setModel("Galaxy A34 5G");
-        phoneOne.setResolution(posResolution[0]);
-        phoneOne.setBattery(posBattery[3]);
-        phoneOne.setWirelessCharger(posWirelessCharger[1]);
-        phoneOne.setMemory(posMemory[0]);
+        phoneOne.setResolution(posResolution.get(posResolution.indexOf("2340x1080")));
+        phoneOne.setBattery(posBattery.get(posBattery.indexOf("5000mAh")));
+        phoneOne.setWirelessCharger(posWirelessCharger.get(posWirelessCharger.indexOf("Не поддерживает")));
+        phoneOne.setMemory(posMemory.get(posMemory.indexOf("128ГБ")));
 
         Phone phoneTwo = new Phone();
-        phoneTwo.setManufacturer(posManufacturer[3]);
+        phoneTwo.setManufacturer(posManufacturer.get(posManufacturer.indexOf("Samsung")));
         phoneTwo.setModel("Galaxy A34 5G");
-        phoneTwo.setResolution(posResolution[0]);
-        phoneTwo.setBattery(posBattery[3]);
-        phoneTwo.setWirelessCharger(posWirelessCharger[1]);
-        phoneTwo.setMemory(posMemory[1]);
+        phoneTwo.setResolution(posResolution.get(posResolution.indexOf("2340x1080")));
+        phoneTwo.setBattery(posBattery.get(posBattery.indexOf("5000mAh")));
+        phoneTwo.setWirelessCharger(posWirelessCharger.get(posWirelessCharger.indexOf("Не поддерживает")));
+        phoneTwo.setMemory(posMemory.get(posMemory.indexOf("256ГБ")));
 
         Phone phoneThree = new Phone();
-        phoneThree.setManufacturer(posManufacturer[4]);
+        phoneThree.setManufacturer(posManufacturer.get(posManufacturer.indexOf("Xiaomi")));
         phoneThree.setModel("13 Ultra");
-        phoneThree.setResolution(posResolution[2]);
-        phoneThree.setBattery(posBattery[3]);
-        phoneThree.setWirelessCharger(posWirelessCharger[0]);
-        phoneThree.setMemory(posMemory[1]);
+        phoneThree.setResolution(posResolution.get(posResolution.indexOf("3200x1440")));
+        phoneThree.setBattery(posBattery.get(posBattery.indexOf("5000mAh")));
+        phoneThree.setWirelessCharger(posWirelessCharger.get(posWirelessCharger.indexOf("Поддерживает")));
+        phoneThree.setMemory(posMemory.get(posMemory.indexOf("256ГБ")));
 
         Phone phoneFour = new Phone();
-        phoneFour.setManufacturer(posManufacturer[4]);
+        phoneFour.setManufacturer(posManufacturer.get(posManufacturer.indexOf("Xiaomi")));
         phoneFour.setModel("13 Ultra");
-        phoneFour.setResolution(posResolution[2]);
-        phoneFour.setBattery(posBattery[3]);
-        phoneFour.setWirelessCharger(posWirelessCharger[0]);
-        phoneFour.setMemory(posMemory[2]);
+        phoneFour.setResolution(posResolution.get(posResolution.indexOf("3200x1440")));
+        phoneFour.setBattery(posBattery.get(posBattery.indexOf("5000mAh")));
+        phoneFour.setWirelessCharger(posWirelessCharger.get(posWirelessCharger.indexOf("Поддерживает")));
+        phoneFour.setMemory(posMemory.get(posMemory.indexOf("512ГБ")));
 
         Phone phoneFive = new Phone();
-        phoneFive.setManufacturer(posManufacturer[4]);
+        phoneFive.setManufacturer(posManufacturer.get(posManufacturer.indexOf("Xiaomi")));
         phoneFive.setModel("13 Ultra");
-        phoneFive.setResolution(posResolution[2]);
-        phoneFive.setBattery(posBattery[3]);
-        phoneFive.setWirelessCharger(posWirelessCharger[0]);
-        phoneFive.setMemory(posMemory[3]);
-/*        
+        phoneFive.setResolution(posResolution.get(posResolution.indexOf("3200x1440")));
+        phoneFive.setBattery(posBattery.get(posBattery.indexOf("5000mAh")));
+        phoneFive.setWirelessCharger(posWirelessCharger.get(posWirelessCharger.indexOf("Поддерживает")));
+        phoneFive.setMemory(posMemory.get(posMemory.indexOf("1ТБ")));
 
-        Phone phone3 = new Phone();
-            phone3.manufacturer = new String[] {"Google"};
-            phone3.model = "Pixel 7";
-            phone3.resolution = new String[] {"2400x1080"};
-            phone3.battery = new String[] {"4355mAh"};
-            phone3.wirelessCharger = new String[] {"Поддерживает"};
-            phone3.memory = new String[]{"128ГБ","256ГБ"};
-        
-        Phone phone4 = new Phone();
-            phone4.manufacturer = ;
-            phone4.model = "70 5G";
-            phone4.resolution = new String[] {"2400x1080"};
-            phone4.battery = new String[] {"4800mAh"};
-            phone4.wirelessCharger = new String[] {"Поддерживает"};
-            phone4.memory = new String[]{"128ГБ","256ГБ"};
+        Phone phoneSix = new Phone();
+        phoneSix.setManufacturer(posManufacturer.get(posManufacturer.indexOf("Google")));
+        phoneSix.setModel("Pixel 7");
+        phoneSix.setResolution(posResolution.get(posResolution.indexOf("2400x1080")));
+        phoneSix.setBattery(posBattery.get(posBattery.indexOf("4355mAh")));
+        phoneSix.setWirelessCharger(posWirelessCharger.get(posWirelessCharger.indexOf("Поддерживает")));
+        phoneSix.setMemory(posMemory.get(posMemory.indexOf("128ГБ")));
 
-        Phone phone5 = new Phone();
-            phone5.manufacturer = new String[] {"Apple"};
-            phone5.model = "iPhone 13 mini";
-            phone5.resolution = new String[] {"2340x1080"};
-            phone5.battery = new String[] {"2406mAh"};
-            phone5.wirelessCharger = new String[] {"Поддерживает"};
-            phone5.memory = new String[]{"128ГБ"};*/
+        Phone phoneSeven = new Phone();
+        phoneSeven.setManufacturer(posManufacturer.get(posManufacturer.indexOf("Google")));
+        phoneSeven.setModel("Pixel 7");
+        phoneSeven.setResolution(posResolution.get(posResolution.indexOf("2400x1080")));
+        phoneSeven.setBattery(posBattery.get(posBattery.indexOf("4355mAh")));
+        phoneSeven.setWirelessCharger(posWirelessCharger.get(posWirelessCharger.indexOf("Поддерживает")));
+        phoneSeven.setMemory(posMemory.get(posMemory.indexOf("256ГБ")));
+
+        Phone phoneEight = new Phone();
+        phoneEight.setManufacturer(posManufacturer.get(posManufacturer.indexOf("Honor")));
+        phoneEight.setModel("70 5G");
+        phoneEight.setResolution(posResolution.get(posResolution.indexOf("2400x1080")));
+        phoneEight.setBattery(posBattery.get(posBattery.indexOf("4800mAh")));
+        phoneEight.setWirelessCharger(posWirelessCharger.get(posWirelessCharger.indexOf("Поддерживает")));
+        phoneEight.setMemory(posMemory.get(posMemory.indexOf("128ГБ")));
+
+        Phone phoneNine = new Phone();
+        phoneNine.setManufacturer(posManufacturer.get(posManufacturer.indexOf("Honor")));
+        phoneNine.setModel("70 5G");
+        phoneNine.setResolution(posResolution.get(posResolution.indexOf("2400x1080")));
+        phoneNine.setBattery(posBattery.get(posBattery.indexOf("4800mAh")));
+        phoneNine.setWirelessCharger(posWirelessCharger.get(posWirelessCharger.indexOf("Поддерживает")));
+        phoneNine.setMemory(posMemory.get(posMemory.indexOf("256ГБ")));
+
+        Phone phoneTen = new Phone();
+        phoneTen.setManufacturer(posManufacturer.get(posManufacturer.indexOf("Apple")));
+        phoneTen.setModel("iPhone 13 mini");
+        phoneTen.setResolution(posResolution.get(posResolution.indexOf("2340x1080")));
+        phoneTen.setBattery(posBattery.get(posBattery.indexOf("2406mAh")));
+        phoneTen.setWirelessCharger(posWirelessCharger.get(posWirelessCharger.indexOf("Поддерживает")));
+        phoneTen.setMemory(posMemory.get(posMemory.indexOf("128ГБ")));
 
         List<Phone> allPhones = new ArrayList<>();
         allPhones.add(phoneOne);
@@ -171,6 +176,11 @@ public class Code extends Panel implements ActionListener,ItemListener {
         allPhones.add(phoneThree);
         allPhones.add(phoneFour);
         allPhones.add(phoneFive);
+        allPhones.add(phoneSix);
+        allPhones.add(phoneSeven);
+        allPhones.add(phoneEight);
+        allPhones.add(phoneNine);
+        allPhones.add(phoneTen);
 
         //*****************************************
         //Выпадающий список с выбором производителя
@@ -194,7 +204,6 @@ public class Code extends Panel implements ActionListener,ItemListener {
                 System.out.println("Выбран неверный производитель");
             }
         });
-        panelFirst.add(choiceManufacturer);
 
         //**************************************
         //Выпадающий список с выбором разрешения
@@ -215,7 +224,6 @@ public class Code extends Panel implements ActionListener,ItemListener {
                 System.out.println("Выбрано неверное разрешение");
             }
         });
-        panelFirst.add(choiceResolution);
 
         //*******************************************
         //Выпадающий список с выбором емкости батареи
@@ -236,7 +244,6 @@ public class Code extends Panel implements ActionListener,ItemListener {
                 System.out.println("Выбрана неверная емкость батареи");
             }
         });
-        panelFirst.add(choiceBattery);
 
         //*********************************************************
         //Выпадающий список с выбором поддержки беспроводой зарядки
@@ -257,7 +264,6 @@ public class Code extends Panel implements ActionListener,ItemListener {
                 System.out.println("Выбран неверный тип поддержки беспроводной зарядки");
             }
         });
-        panelFirst.add(choiceWirelessCharger);
 
         //*********************************************************
         //Выпадающий список с выбором размера внутреннего хранилища
@@ -277,19 +283,45 @@ public class Code extends Panel implements ActionListener,ItemListener {
             }
         });
 
-        panelFirst.add(choiceMemory);
-
         buttonNext = new Button("Далее");
 
 
-        panelFirst.add(buttonNext);
+        GridBagConstraints constraints = new GridBagConstraints();
+       
+        // По умолчанию натуральная высота, максимальная ширина 
+        constraints.fill = GridBagConstraints.HORIZONTAL; 
+        constraints.weightx = 0.5;
+        constraints.gridy   = 0  ;  // нулевая ячейка таблицы по вертикали    
 
-        panelFirst.setBackground(Color.GREEN);
+        constraints.gridx = 0;      // нулевая ячейка таблицы по горизонтали
+        panelFirst.add(choiceManufacturer, constraints); 
+  
+        constraints.gridx = 1;      // первая ячейка таблицы по горизонтали
+        panelFirst.add(choiceResolution, constraints); 
+          
+        constraints.gridx = 2;      // вторая ячейка таблицы по горизонтали
+        panelFirst.add(choiceBattery, constraints); 
+
+        constraints.gridx     = 0;    // нулевая ячейка по горизонтали
+        constraints.gridy     = 1;    // первая ячейка по вертикали
+        panelFirst.add(choiceWirelessCharger, constraints); 
+
+        constraints.gridx = 1;
+        panelFirst.add(choiceMemory,constraints);
+ 
+ 
+        constraints.weighty   = 1.0;  // установить отступ
+                                      // установить кнопку в конец окна
+        constraints.anchor    = GridBagConstraints.PAGE_END; 
+        constraints.insets    = new Insets(5, 0, 0, 0);  // граница ячейки по Y 
+        constraints.gridx     = 1;    // первая ячейка таблицы по горизонтали
+        constraints.gridy     = 2;    // вторая ячейка по вертикали
+        panelFirst.add(buttonNext, constraints);  
 
         add(panelFirst);
 
         buttonNext.addActionListener(e ->{
-            panelSecond = new Panel(new GridLayout(0,1));
+            panelSecond = new JPanel(new GridLayout(0,1));
 
             remove(panelFirst);
             add(panelSecond);
@@ -303,6 +335,13 @@ public class Code extends Panel implements ActionListener,ItemListener {
                     rightPhone = phone;
                 }
             }
+
+            List<String> currentParams = new ArrayList<>();
+            currentParams.add(currentPhoneSearch.getBattery());
+            currentParams.add(currentPhoneSearch.getManufacturer());
+            currentParams.add(currentPhoneSearch.getMemory());
+            currentParams.add(currentPhoneSearch.getResolution());
+            currentParams.add(currentPhoneSearch.getWirelessCharger());
 
             if (rightPhone != null){
                 Label textPhoneWasFound = new Label("По Вашим параметрам подходит телефон:");
@@ -318,7 +357,7 @@ public class Code extends Panel implements ActionListener,ItemListener {
             }
             else{
                 Label textPhoneWasNotFound = new Label("По Вашим параметрам не было найдено телефона");
-                System.out.println("По Вашим параметрам не было найдено телефона");
+                System.out.println(textPhoneWasNotFound);
                 font = new Font("Dialog",Font.PLAIN,14);
                 textPhoneWasNotFound.setFont(font);
                 panelSecond.add(textPhoneWasNotFound);
@@ -326,19 +365,20 @@ public class Code extends Panel implements ActionListener,ItemListener {
 
             panelSecond.revalidate();
 
-            List<String> currentParams = new ArrayList<>();
-            currentParams.add(currentPhoneSearch.getBattery());
-            currentParams.add(currentPhoneSearch.getManufacturer());
-            currentParams.add(currentPhoneSearch.getMemory());
-            currentParams.add(currentPhoneSearch.getResolution());
-            currentParams.add(currentPhoneSearch.getWirelessCharger());
-
             for (String param:currentParams) {
                 if (param.equals(inactiveChoice)){
                     System.out.println("Не выбран один из параметров");
                     break;
                 }
             }
+
+            buttonBack = new Button("Назад");
+            panelSecond.add(buttonBack);
+
+            buttonBack.addActionListener(x ->{
+                remove(panelSecond);
+                add(panelFirst);
+            });
 
         });
     }
@@ -354,9 +394,9 @@ public class Code extends Panel implements ActionListener,ItemListener {
     public static void main(String[] args) {
         Code panel = new Code();
 
-        Frame frame = new Frame("Экспертная система по выбору смартфона");
+        JFrame frame = new JFrame("Экспертная система по выбору смартфона");
         frame.add(panel);
-        frame.setSize(1260, 660);
+        frame.setSize(600, 200);
         frame.setLocation(100, 100);
         frame.setVisible(true);
         frame.addWindowListener(new WindowAdapter(){
